@@ -17,7 +17,12 @@ projet de data science :
 3.  communication des résultats
 
 L’univers du package **tidyverse** est essentiel pour réaliser ces 3
-étapes avec R aujourd’hui.
+étapes avec R aujourd’hui. Pour comprendre cet univers, je conseille
+[**cet
+aide-mémoire**](https://thinkr.fr/pdf/dplyr-french-cheatsheet.pdf) en
+premier lieu, et pour aller plus loin, l’ouvrage de référence [**R for
+Data Science**](https://r4ds.had.co.nz/introduction.html) de Grolemund
+G. and Wickham H.
 
 ``` r
 library(tidyverse)
@@ -54,13 +59,13 @@ stock_prices <- symbols %>%
     ##   symbol date         open   high    low  close     volume adjusted
     ##   <chr>  <date>      <dbl>  <dbl>  <dbl>  <dbl>      <dbl>    <dbl>
     ## 1 ^FCHI  1990-03-01  1836   1838   1827   1832           0    1832 
-    ## 2 ^FCHI  2024-03-14  8158.  8218.  8154.  8161.          0    8161.
+    ## 2 ^FCHI  2024-03-15  8163.  8178.  8156.  8177.          0    8177.
     ## 3 ^IXIC  1990-01-03   461.   462.   460    461.  152660000     461.
-    ## 4 ^IXIC  2024-03-14 16209. 16245. 16040. 16129. 4656368000   16129.
+    ## 4 ^IXIC  2024-03-14 16209. 16245. 16040. 16129. 5450980000   16129.
     ## 5 ^N225  1990-01-04 38922. 38951. 38705. 38713.          0   38713.
-    ## 6 ^N225  2024-03-14 38592. 38840. 38400. 38807.          0   38807.
+    ## 6 ^N225  2024-03-15 38548. 38809. 38520. 38708.          0   38708.
     ## 7 ^SSMI  1990-11-09  1379.  1389   1375.  1387.          0    1387.
-    ## 8 ^SSMI  2024-03-14 11748. 11780. 11688. 11721.          0   11721.
+    ## 8 ^SSMI  2024-03-15 11734. 11761. 11690. 11716.          0   11716.
 
 ``` r
 # plot sur données mensuelles
@@ -101,7 +106,7 @@ daily_returns <- stock_prices %>%
 ### 1.2 Démêlage (wrangling en anglais)
 
 “Tidying and transforming are called *wrangling*, because getting your
-data in a form that’s natural to work with often feels like a fight”
+data in a form that’s natural to work with often feels like a fight”,
 [**R for Data Science**](https://r4ds.had.co.nz/introduction.html)
 (Grolemund G. and Wickham H.).
 
@@ -136,10 +141,10 @@ daily_returns %>%
     ## # A tibble: 4 × 6
     ##   symbol  moyenne ecartype nombre     min   max
     ##   <chr>     <dbl>    <dbl>  <int>   <dbl> <dbl>
-    ## 1 ^FCHI  0.000264   0.0135   8643 -0.123  0.112
+    ## 1 ^FCHI  0.000265   0.0135   8644 -0.123  0.112
     ## 2 ^IXIC  0.000519   0.0146   8615 -0.123  0.142
-    ## 3 ^N225  0.000108   0.0147   8395 -0.114  0.142
-    ## 4 ^SSMI  0.000316   0.0111   8377 -0.0964 0.114
+    ## 3 ^N225  0.000108   0.0147   8396 -0.114  0.142
+    ## 4 ^SSMI  0.000316   0.0111   8378 -0.0964 0.114
 
 ``` r
 daily_returns %>%
@@ -225,9 +230,9 @@ pander(VaR_1)
 | symbol | Historique | Bootstrap | Gaussienne | Skew_Student |
 |:------:|:----------:|:---------:|:----------:|:------------:|
 | ^FCHI  |   -3.91%   |  -3.86%   |   -3.12%   |    -3.83%    |
-| ^IXIC  |   -4.09%   |  -4.07%   |   -3.35%   |    -6.74%    |
-| ^N225  |   -3.88%   |  -3.91%   |   -3.41%   |    -4.03%    |
-| ^SSMI  |   -3.15%   |  -3.18%   |   -2.55%   |    -3.48%    |
+| ^IXIC  |   -4.09%   |  -4.09%   |   -3.35%   |    -6.74%    |
+| ^N225  |   -3.88%   |  -3.89%   |   -3.41%   |    -5.34%    |
+| ^SSMI  |   -3.15%   |  -3.17%   |   -2.55%   |    -3.48%    |
 
 Voici ci-dessous les VaR demandées dans *l’exercice 1.1* pour les
 différents indices avec alpha = 0.1%.
@@ -241,10 +246,10 @@ pander(VaR_01)
 
 | symbol | Historique | Bootstrap | Gaussienne | Skew_Student |
 |:------:|:----------:|:---------:|:----------:|:------------:|
-| ^FCHI  |   -6.54%   |  -6.45%   |   -4.15%   |    -7.83%    |
+| ^FCHI  |   -6.54%   |  -6.59%   |   -4.15%   |    -7.83%    |
 | ^IXIC  |   -7.25%   |  -7.48%   |   -4.46%   |   -24.86%    |
-| ^N225  |   -6.85%   |  -7.07%   |   -4.53%   |    -7.71%    |
-| ^SSMI  |   -5.57%   |  -5.67%   |   -3.39%   |    -7.76%    |
+| ^N225  |   -6.85%   |  -6.99%   |   -4.53%   |   -14.31%    |
+| ^SSMI  |   -5.57%   |  -5.62%   |   -3.39%   |    -7.78%    |
 
 ### 2.2 Résolution de *l’exercice 2.1* du cours
 
