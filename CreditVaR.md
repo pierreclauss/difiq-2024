@@ -28,6 +28,10 @@ PD1 = 1 - exp(-300 / 10000 / 0.6)
 PD2 = 1 - exp(-50 / 10000 / 0.6)
 ```
 
+``` r
+library(scales)
+```
+
 La PD implicite de l’entreprise 1 est égale à 4.88% et celle de
 l’entreprise 2 est égale à 0.83%.
 
